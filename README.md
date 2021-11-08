@@ -15,6 +15,9 @@ A new feature is_expensive is added to indicate brands and products are that exp
 All the categorical features are one-hot encoded using TfidVectorizer.
 Final sparse matrix is combined and used for training and testing the model.
 
+preprocess.py contains all the preprocessing functions for new test data.
+utils.py forms a feature pipeline and gets the final prediction.
+
 ### Training
 
 The train-test split of 80%-20% is done on the train.csv for training the model.\
@@ -26,6 +29,35 @@ This model gives fairly low RMSLE training error.
 
 Model is evaluated and mean squared log error is calculated. The model is exported as pickle to use for prediction of prices.
 The prices for mercari_test.csv are exported in required format.
+
+## API server
+Runs on host="0.0.0.0", port=5000
+### Endpoints
+/get_price uses POST method to get the JSON input data and returns the predicted price in JSON format.
+
+### Running tests
+unittests.py contains the unit tests for the server.
+After setting up the server, we can run the python file to perform all the unit tests.
+
+### Building docker image
+DockerFile is used to create a docker image that runs the API.
+To create a docker image in server directory, run, 
+```
+docker build -f DockerFile -t price_pred_docker .
+```
+
+### Running docker image
+After creating the docker image, we can see the image using,
+```
+docker image ls
+```
+
+To start the python flask server,
+```
+docker run -p 5000:5000 price_pred_docker
+```
+This will run the server on port 5000 and host 0.0.0.0
+We can perform post requests on http://0.0.0.0:5000/get_price
 
 
 
