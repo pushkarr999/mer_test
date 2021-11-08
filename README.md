@@ -56,7 +56,7 @@ To start the python flask server,
 ```
 docker run -p 5000:5000 price_pred_docker
 ```
-This will run the server on port 5000 and host 0.0.0.0
+This will run the server on port 5000 and host 0.0.0.0.
 We can perform post requests on http://0.0.0.0:5000/get_price
 
 
